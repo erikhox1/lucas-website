@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analysis — Hypersonic Nozzle Project</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">
+    Hypersonic Nozzle
+    <span>Stevens Institute of Technology</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Overview</a></li>
+    <li><a href="background.html">Background</a></li>
+    <li><a href="methodology.html">Methodology</a></li>
+    <li><a href="analysis.html" class="active">Analysis</a></li>
+    <li><a href="manufacturing.html">Manufacturing</a></li>
+    <li><a href="references.html">References</a></li>
+    <li><a href="members.html">Team</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero bg-alt">
+    <div class="container">
+      <p class="hero-label">Technical Analysis</p>
+      <h1>Flow Analysis</h1>
+      <p class="hero-desc">
+        Three complementary methods — Method of Characteristics, CFD, and
+        helium thermodynamic modeling — work together to design and validate
+        the nozzle contour.
+      </p>
+    </div>
+  </section>
+
+  <!-- MOC -->
+  <section id="moc">
+    <div class="container">
+      <div class="two-col wide">
+        <div>
+          <span class="label">Analysis 01</span>
+          <h2 class="section-title">Method of<br><em>Characteristics</em></h2>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.5rem;">
+            The MOC is the primary tool for designing the nozzle wall profile.
+            It converts the governing partial differential equations for
+            supersonic flow into ordinary differential equations along
+            characteristic lines — curves along which pressure disturbances
+            propagate through the gas.
+          </p>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.5rem;">
+            The method applies to two-dimensional, supersonic, steady, inviscid,
+            and irrotational flow of ideal helium. Only the diverging section is
+            designed by MOC; the converging section is assumed to deliver a
+            uniform sonic condition at the throat.
+          </p>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;">
+            Characteristic line intersections are used to cancel Mach wave
+            reflections, producing a shockless, uniform exit flow at the design
+            Mach number of 14.
+          </p>
+
+          <div class="highlight-box">
+            <p><strong>Validation result:</strong> The Python MOC implementation
+            generated contours showing remarkable similarity to CFD results across
+            the Mach 6–14 operating range, confirming the analytical approach.</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="diagram-wrap" style="padding:1.25rem;">
+            <img
+              class="analysis-img"
+              src="../other/analysis/charecteristics_graph.png"
+              alt="MOC characteristics graph showing wall contour and boundary layer displacement"
+            />
+          </div>
+          <p class="diagram-caption">Characteristic lines, wall contour, and boundary layer displacement (\(\delta^*\)) — MOC output</p>
+
+          <div class="equation mt-3">
+            <span class="eq-label">Prandtl-Meyer Function</span>
+            <div class="eq-body">$$\nu(M) = \sqrt{\frac{\gamma+1}{\gamma-1}}\arctan\!\sqrt{\frac{\gamma-1}{\gamma+1}(M^2-1)}\;-\;\arctan\!\sqrt{M^2-1}$$</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sivells reference diagram -->
+      <div class="full-width-figure">
+        <div class="diagram-wrap" style="padding:2rem 2.5rem;">
+          <img
+            class="analysis-img"
+            src="../other/analysis/computer_program_for_aerodynamic_design_sivells_1978.png"
+            alt="Sivells 1978 nozzle design diagram showing inflection region, radial flow, and uniform flow zones"
+          />
+        </div>
+        <p class="diagram-caption">
+          Nozzle flow region schematic — Sivells (1978). Showing throat (T), inflection region (G),
+          radial flow, and the uniform exit flow zone (D). The MOC solver follows this region structure.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOC STEPS -->
+  <section class="bg-alt" style="padding:6rem 0;">
+    <div class="container">
+      <span class="label">MOC Process</span>
+      <h2 class="section-title" style="margin-bottom:3rem;">Three steps to a<br>shockless contour</h2>
+      <div class="card-grid">
+        <div class="card">
+          <span class="card-num">01</span>
+          <h3>Set the Exit Condition</h3>
+          <p>Choose M_exit = 14 and compute the maximum expansion angle
+             θ_max = ν(M_exit)/2 using the Prandtl-Meyer function for helium.</p>
+        </div>
+        <div class="card">
+          <span class="card-num">02</span>
+          <h3>Trace Characteristic Lines</h3>
+          <p>Project left- and right-running Mach waves from the throat.
+             At each intersection, enforce flow-turning and continuity to find
+             local Mach number and wall angle.</p>
+        </div>
+        <div class="card">
+          <span class="card-num">03</span>
+          <h3>Cancel Wave Reflections</h3>
+          <p>The wall is shaped so each incident Mach wave arrives at zero
+             reflection angle — canceling it and producing uniform parallel
+             flow at the exit plane.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="divider"></div></div>
+
+  <!-- CFD -->
+  <section id="cfd" style="padding-top:0;">
+    <div class="container">
+      <span class="label">Analysis 02</span>
+      <h2 class="section-title" style="margin-bottom:1.5rem;">CFD via <em>ANSYS</em></h2>
+
+      <div class="diagram-wrap" style="padding:1.5rem;margin-bottom:0.75rem;">
+        <img
+          class="analysis-img"
+          src="../other/analysis/CFD_image_of_nozzle.png"
+          alt="CFD Mach number contour of the hypersonic nozzle, showing flow from subsonic inlet through throat to supersonic expansion"
+        />
+      </div>
+      <p class="diagram-caption" style="margin-bottom:3rem;">
+        CFD Mach number contour — nozzle cross-section. Blue (M ≈ 0.17) at inlet expanding to red (M ≈ 4.65) at exit.
+        Full Mach 14 simulation uses helium properties at operating conditions.
+      </p>
+
+      <div class="two-col">
+        <div>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.5rem;">
+            CFD via ANSYS was used to verify the accuracy and performance of
+            the MOC nozzle contour. While the MOC code provides a theoretical
+            shock-free design based on simplifying assumptions, CFD allows for
+            detailed analysis of real flow behavior — viscous effects, boundary
+            layer growth, and potential flow separation. By comparing CFD results
+            with the MOC-generated contour, the team evaluates flow uniformity,
+            Mach number distribution, and the presence of any residual shocks or
+            expansion waves.
+          </p>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.5rem;">
+            The simulations specify <strong style="color:var(--dark);">ideal air</strong> as the working
+            fluid with symmetry applied where applicable, and mesh refinement
+            concentrated near walls, the throat, and expansion regions to ensure
+            accuracy in high-gradient zones.
+          </p>
+
+          <h3 style="font-family:var(--font-serif);font-size:1.1rem;margin-bottom:1rem;color:var(--black);">Analysis objectives</h3>
+          <table class="spec-table">
+            <tr><td>Mach distribution</td><td>Validate M = 14 at exit</td></tr>
+            <tr><td>Flow uniformity</td><td>Check parallel exit flow</td></tr>
+            <tr><td>Shock structure</td><td>Detect residual Mach waves</td></tr>
+            <tr><td>Boundary layer</td><td>Quantify displacement thickness</td></tr>
+            <tr><td>Flow separation</td><td>Identify detachment risk</td></tr>
+          </table>
+
+          <div class="highlight-box">
+            <p><strong>Turbulence model — k-ω SST:</strong> Selected for accurate
+            prediction of adverse pressure gradient boundary layers and flow
+            separation, which are critical in highly expanded supersonic nozzle flows.</p>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="font-family:var(--font-serif);font-size:1.1rem;margin-bottom:1.25rem;color:var(--black);">Boundary conditions</h3>
+          <table class="spec-table">
+            <tr><td>Inlet total pressure</td><td>1 – 10 MPa</td></tr>
+            <tr><td>Inlet total temperature</td><td>3,000 K</td></tr>
+            <tr><td>Inlet flow direction</td><td>Axial</td></tr>
+            <tr><td>Outlet static pressure</td><td>101,325 Pa</td></tr>
+            <tr><td>Wall — thermal</td><td>Adiabatic</td></tr>
+            <tr><td>Wall — velocity</td><td>No-slip</td></tr>
+            <tr><td>Turbulence model</td><td>k-ω SST</td></tr>
+            <tr><td>Fluid</td><td>Ideal air</td></tr>
+            <tr><td>Domain type</td><td>2D axisymmetric / 3D</td></tr>
+            <tr><td>y⁺ target</td><td>≤ 1 (wall-resolved)</td></tr>
+          </table>
+
+          <p style="font-size:0.85rem;color:var(--mid);line-height:1.8;font-weight:300;margin-top:1.5rem;">
+            Mesh refinement is concentrated at the throat, wall boundary layer,
+            and diverging expansion section to ensure solution accuracy in the
+            high-gradient regions of the compressible flow field.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="divider"></div></div>
+
+  <!-- HELIUM -->
+  <section id="helium" style="padding-top:0;">
+    <div class="container">
+      <div class="two-col wide">
+        <div>
+          <span class="label">Analysis 03</span>
+          <h2 class="section-title">Helium<br><em>characterization</em></h2>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:2rem;">
+            Accurate thermodynamic and transport properties of helium are
+            essential inputs to both the MOC solver and CFD — particularly at
+            the cryogenic and high-enthalpy extremes of the operating envelope.
+            Real-gas equations of state are used rather than ideal-gas
+            approximations to capture the behavior of helium at high density.
+          </p>
+
+          <div class="equation">
+            <span class="eq-label">Pressure — Real Gas Equation of State</span>
+            <div class="eq-body">$$p = A_0\rho^2(a'\rho - 1) + R\rho(B_0\rho + 1)T - RC\rho^2(B_0\rho + 1)\frac{1}{T^2}$$</div>
+          </div>
+
+          <div class="equation">
+            <span class="eq-label">Enthalpy</span>
+            <div class="eq-body">$$h = (c_v^* + R)T - \left(2A_0 - RB_0T + \frac{4RC}{T^2}\right)\rho - \frac{1}{2}\left(\frac{5RB_0C}{T^2} - 3A_0a'\right)\rho^2$$</div>
+          </div>
+
+          <div class="equation">
+            <span class="eq-label">Entropy</span>
+            <div class="eq-body">$$s = c_v^*\ln T - R\!\left[\ln\rho + \left(B_0 + \frac{2C}{T^3}\right)\rho + \frac{B_0 C}{T^3}\rho^2\right]$$</div>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="font-family:var(--font-serif);font-size:1.1rem;margin-bottom:1.25rem;color:var(--black);">Helium vs. Air — key properties</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Helium</th>
+                <th>Air</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>γ</td>
+                <td>1.667</td>
+                <td style="color:var(--warm-gray);">1.400</td>
+              </tr>
+              <tr>
+                <td>R (gas constant)</td>
+                <td>2077 J/kg·K</td>
+                <td style="color:var(--warm-gray);">287 J/kg·K</td>
+              </tr>
+              <tr>
+                <td>c_p</td>
+                <td>5193 J/kg·K</td>
+                <td style="color:var(--warm-gray);">1005 J/kg·K</td>
+              </tr>
+              <tr>
+                <td>Liquefaction temp.</td>
+                <td>4.2 K @ 1 atm</td>
+                <td style="color:var(--warm-gray);">77 K (N₂)</td>
+              </tr>
+              <tr>
+                <td>Speed of sound @ 300 K</td>
+                <td>1020 m/s</td>
+                <td style="color:var(--warm-gray);">347 m/s</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p style="font-size:0.85rem;color:var(--mid);line-height:1.8;font-weight:300;margin-top:1.5rem;margin-bottom:1.25rem;">
+            Viscosity is modeled via a power-law curve fit calibrated at low
+            temperatures, where helium deviates from the Sutherland law.
+            The blue curve shows tabulated data; the orange curve is the fitted model.
+          </p>
+
+          <div class="dark-diagram-wrap">
+            <img
+              src="../other/analysis/curve_fit_for_viscosity_at_low_temp.png"
+              alt="Viscosity vs. temperature curve fit for helium at low temperatures"
+            />
+          </div>
+          <p class="diagram-caption">Helium viscosity curve fit — tabulated data (blue) vs. power-law model (orange)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-brand-name">Hypersonic Nozzle Project</div>
+        <p>Senior design project at Stevens Institute of Technology.
+           Extending hypersonic ground test capability to Mach 14
+           with a helium-driven shock tunnel nozzle.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="../index.html">Overview</a></li>
+          <li><a href="background.html">Background</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="analysis.html">Analysis</a></li>
+          <li><a href="manufacturing.html">Manufacturing</a></li>
+          <li><a href="references.html">References</a></li>
+          <li><a href="members.html">Team</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>On This Page</h4>
+        <ul>
+          <li><a href="#moc">Method of Characteristics</a></li>
+          <li><a href="#cfd">CFD Simulation</a></li>
+          <li><a href="#helium">Helium Properties</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Stevens Institute of Technology — Mechanical Engineering</p>
+      <p>Hypersonic Nozzle Senior Design Project</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left:'$$', right:'$$', display:true},
+      {left:'\\(', right:'\\)', display:false}
+    ]
+  })"></script>
+</body>
+</html>

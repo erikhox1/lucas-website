@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hypersonic Nozzle — Stevens Institute of Technology</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">
+    Hypersonic Nozzle
+    <span>Stevens Institute of Technology</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Overview</a></li>
+    <li><a href="pages/background.html">Background</a></li>
+    <li><a href="pages/methodology.html">Methodology</a></li>
+    <li><a href="pages/analysis.html">Analysis</a></li>
+    <li><a href="pages/manufacturing.html">Manufacturing</a></li>
+    <li><a href="pages/references.html">References</a></li>
+    <li><a href="pages/members.html">Team</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero bg-alt">
+    <div class="container">
+      <p class="hero-label">Senior Design Project</p>
+      <h1>A Mach&nbsp;<em>14</em> Hypersonic Nozzle</h1>
+      <p class="hero-desc">
+        Designing and fabricating a shockless Mach 14 nozzle for the Stevens
+        shock tunnel — extending the facility's hypersonic research capability
+        using helium as the working fluid.
+      </p>
+      <div class="hero-meta">
+        <div class="meta-item">
+          <div class="meta-value">14</div>
+          <div class="meta-label">Target Mach</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-value">He</div>
+          <div class="meta-label">Working Fluid</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-value">2D</div>
+          <div class="meta-label">Nozzle Type</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-value">3,000 K</div>
+          <div class="meta-label">Stagnation Temp.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOZZLE DIAGRAM -->
+  <section>
+    <div class="container">
+      <div class="diagram-wrap">
+        <svg id="nozzleContour" style="width:100%;height:260px;"></svg>
+      </div>
+      <p class="diagram-caption">
+        2D planar symmetric nozzle contour — MOC characteristic lines shown
+      </p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section>
+    <div class="container">
+      <div class="two-col wide">
+        <div>
+          <span class="label">About the Project</span>
+          <h2 class="section-title">From Mach 6<br>to Mach <em>14</em></h2>
+        </div>
+        <div>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.5rem;">
+            The Stevens shock tunnel currently generates flows up to Mach 6.
+            This project redesigns the nozzle section to reach Mach 14 — a
+            regime relevant to scramjet propulsion, re-entry vehicles, and
+            hypersonic glide vehicles.
+          </p>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;">
+            The key enabler is helium. Its uniquely low liquefaction temperature
+            allows the tunnel to operate at the high stagnation temperatures
+            required for Mach 14, something that is not achievable with air or
+            nitrogen at any practical facility scale.
+          </p>
+
+          <div class="pull-quote">
+            <p>"Design and fabricate a shockless Mach 14 nozzle for the Stevens
+            shock tunnel using helium as the working fluid."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THREE PILLARS -->
+  <section class="bg-alt" style="padding:6rem 0;">
+    <div class="container">
+      <span class="label">Design Pillars</span>
+      <h2 class="section-title" style="margin-bottom:3rem;">How it comes together</h2>
+
+      <div class="card-grid">
+        <div class="card">
+          <span class="card-num">01</span>
+          <h3>Method of Characteristics</h3>
+          <p>A Python-based MOC solver designs the diverging wall contour by tracing
+             characteristic lines through the supersonic flow field and canceling
+             internal Mach wave reflections.</p>
+        </div>
+        <div class="card">
+          <span class="card-num">02</span>
+          <h3>CFD Validation</h3>
+          <p>RANS simulations with k-ω SST turbulence modeling capture viscous
+             boundary layers, flow separation, and shock structure that the
+             inviscid MOC approach cannot predict.</p>
+        </div>
+        <div class="card">
+          <span class="card-num">03</span>
+          <h3>Precision Machining</h3>
+          <p>The contour is CNC-milled into 6061 aluminum, with plexiglass side
+             walls for optical access. The assembly fits the existing shock
+             tunnel with no structural modifications required.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MACH PROFILE -->
+  <section>
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <span class="label">Flow Profile</span>
+          <h2 class="section-title">Mach number<br>along the nozzle</h2>
+          <p class="section-desc" style="margin-bottom:2rem;">
+            Helium accelerates from subsonic conditions at the inlet, passes
+            through a sonic throat (M&nbsp;=&nbsp;1), then expands through
+            the shaped diverging section to reach M&nbsp;=&nbsp;14 at the exit.
+          </p>
+          <table class="spec-table">
+            <tr><td>Stagnation pressure</td><td>1 – 10 MPa</td></tr>
+            <tr><td>Stagnation temperature</td><td>3,000 K</td></tr>
+            <tr><td>Exit Mach number</td><td>14</td></tr>
+            <tr><td>Working fluid</td><td>Helium</td></tr>
+            <tr><td>Ratio of specific heats</td><td>γ = 1.667</td></tr>
+            <tr><td>Nozzle geometry</td><td>2D planar symmetric</td></tr>
+          </table>
+        </div>
+        <div>
+          <div class="diagram-wrap">
+            <svg class="mach-profile"></svg>
+          </div>
+          <p class="diagram-caption">Mach number vs. normalized axial position</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLICATIONS -->
+  <section class="bg-alt" style="padding:6rem 0;">
+    <div class="container">
+      <span class="label">Research Applications</span>
+      <h2 class="section-title" style="margin-bottom:3rem;">What Mach 14<br>makes possible</h2>
+
+      <div class="card-grid">
+        <div class="card">
+          <span class="card-num">—</span>
+          <h3>Scramjet Systems</h3>
+          <p>Supersonic combustion ramjets require Mach 5+ inlet conditions.
+             Mach 14 enables testing of dual-mode ramjet/scramjet transitions
+             and fuel injection schemes at flight-relevant conditions.</p>
+        </div>
+        <div class="card">
+          <span class="card-num">—</span>
+          <h3>Re-Entry Vehicles</h3>
+          <p>Peak aerothermal loads during orbital re-entry occur in the Mach
+             10–18 range — directly accessible with this facility upgrade and
+             critical for heat shield and control authority design.</p>
+        </div>
+        <div class="card">
+          <span class="card-num">—</span>
+          <h3>Hypersonic Glide Vehicles</h3>
+          <p>Boost-glide systems cruise at Mach 10–20. Ground testing at
+             these speeds is essential for understanding aerothermal loads
+             and shock–boundary-layer interactions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-brand-name">Hypersonic Nozzle Project</div>
+        <p>Senior design project at Stevens Institute of Technology.
+           Extending hypersonic ground test capability to Mach 14
+           with a helium-driven shock tunnel nozzle.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="pages/background.html">Background</a></li>
+          <li><a href="pages/methodology.html">Methodology</a></li>
+          <li><a href="pages/analysis.html">Analysis</a></li>
+          <li><a href="pages/manufacturing.html">Manufacturing</a></li>
+          <li><a href="pages/references.html">References</a></li>
+          <li><a href="pages/members.html">Team</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Analysis</h4>
+        <ul>
+          <li><a href="pages/analysis.html#moc">Method of Characteristics</a></li>
+          <li><a href="pages/analysis.html#cfd">CFD Simulation</a></li>
+          <li><a href="pages/analysis.html#helium">Helium Properties</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Stevens Institute of Technology — Mechanical Engineering</p>
+      <p>Hypersonic Nozzle Senior Design Project</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left:'$$', right:'$$', display:true},
+      {left:'\\(', right:'\\)', display:false}
+    ]
+  })"></script>
+</body>
+</html>

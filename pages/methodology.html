@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Methodology — Hypersonic Nozzle Project</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">
+    Hypersonic Nozzle
+    <span>Stevens Institute of Technology</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Overview</a></li>
+    <li><a href="background.html">Background</a></li>
+    <li><a href="methodology.html" class="active">Methodology</a></li>
+    <li><a href="analysis.html">Analysis</a></li>
+    <li><a href="manufacturing.html">Manufacturing</a></li>
+    <li><a href="references.html">References</a></li>
+    <li><a href="members.html">Team</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero bg-alt">
+    <div class="container">
+      <p class="hero-label">Design Approach</p>
+      <h1>Methodology</h1>
+      <p class="hero-desc">
+        Two foundational decisions — geometry type and working fluid — drive
+        every downstream choice in design, analysis, and manufacturing.
+      </p>
+    </div>
+  </section>
+
+  <!-- 2D NOZZLE -->
+  <section>
+    <div class="container">
+      <div class="two-col wide">
+        <div>
+          <span class="label">Geometry</span>
+          <h2 class="section-title">A 2D planar<br><em>symmetric</em> nozzle</h2>
+          <p class="section-desc" style="margin-bottom:2rem;">
+            Instead of an axisymmetric (de Laval) design, this project uses a
+            planar symmetric nozzle — two mirror-image contoured plates forming
+            the flow passage.
+          </p>
+
+          <div class="pull-quote">
+            <p>"Modeling and fabrication is much easier and cheaper compared
+               to the axisymmetric nozzle."</p>
+          </div>
+
+          <p style="color:var(--mid);font-size:0.9rem;line-height:1.9;font-weight:300;margin-top:1.5rem;">
+            The contour can be machined from two smaller material pieces rather
+            than a single large rotational body, the throat assembly is
+            substantially simpler, and plexiglass side walls provide optical
+            access that an axisymmetric design cannot easily offer.
+          </p>
+        </div>
+
+        <div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Planar 2D</th>
+                <th>Axisymmetric</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Material pieces</td>
+                <td>2 halves</td>
+                <td style="color:var(--warm-gray);">Single block</td>
+              </tr>
+              <tr>
+                <td>MOC complexity</td>
+                <td>Moderate</td>
+                <td style="color:var(--warm-gray);">Higher</td>
+              </tr>
+              <tr>
+                <td>Throat assembly</td>
+                <td>Straightforward</td>
+                <td style="color:var(--warm-gray);">Challenging</td>
+              </tr>
+              <tr>
+                <td>Optical access</td>
+                <td>Plexiglass walls</td>
+                <td style="color:var(--warm-gray);">Limited</td>
+              </tr>
+              <tr>
+                <td>Machining cost</td>
+                <td>Lower</td>
+                <td style="color:var(--warm-gray);">Higher</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="divider"></div></div>
+
+  <!-- HELIUM -->
+  <section style="padding-top:0;">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <span class="label">Working Fluid</span>
+          <h2 class="section-title">Why <em>helium</em>?</h2>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.5rem;">
+            The choice of working fluid is the enabling technology that makes
+            Mach 14 achievable. Helium allows helium-based wind tunnels to reach
+            much higher Mach numbers than systems using air or nitrogen.
+          </p>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;">
+            At high Mach numbers, required stagnation temperature scales with
+            M². For air at Mach 14, T₀ would exceed 20,000 K — far beyond
+            practical limits. Helium's properties allow achievable stagnation
+            temperatures (~3,000 K) to produce the same Mach number.
+          </p>
+        </div>
+
+        <div>
+          <div class="card-grid" style="grid-template-columns:1fr;gap:1.5px;">
+            <div class="card">
+              <h3>Low Liquefaction Temperature</h3>
+              <p>Helium liquefies at only 4.2 K at atmospheric pressure —
+                 meaning it remains gaseous even at the extreme conditions
+                 inside the shock tunnel.</p>
+            </div>
+            <div class="card">
+              <h3>Higher Mach Numbers</h3>
+              <p>Higher stagnation temperatures required for Mach 14 are not
+                 achievable with air without phase change. Helium removes this
+                 constraint entirely.</p>
+            </div>
+            <div class="card">
+              <h3>Minimal Infrastructure Change</h3>
+              <p>Switching from nitrogen to helium requires only a new working
+                 fluid supply. No structural modifications to the shock tunnel
+                 are needed.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="divider"></div></div>
+
+  <!-- DESIGN SEQUENCE -->
+  <section style="padding-top:0;">
+    <div class="container">
+      <div class="two-col wide">
+        <div>
+          <span class="label">Process</span>
+          <h2 class="section-title">Design sequence</h2>
+          <p class="section-desc">
+            Each stage feeds into the next, building confidence before
+            committing to the final geometry.
+          </p>
+        </div>
+        <div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num"></div>
+              <div class="step-body">
+                <h4>Helium Characterization</h4>
+                <p>Curve-fit thermodynamic properties — pressure, enthalpy,
+                   entropy, and viscosity — across the full operating temperature
+                   range. These become inputs to the MOC solver and CFD.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num"></div>
+              <div class="step-body">
+                <h4>MOC Contour Design</h4>
+                <p>A Python solver generates the diverging wall profile using
+                   Prandtl-Meyer theory, canceling Mach wave reflections to
+                   produce uniform, shockless exit flow.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num"></div>
+              <div class="step-body">
+                <h4>CFD Validation</h4>
+                <p>RANS simulation with k-ω SST turbulence captures boundary
+                   layer growth and confirms the MOC contour produces the target
+                   Mach number with acceptable uniformity.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num"></div>
+              <div class="step-body">
+                <h4>CAD and CNC Machining</h4>
+                <p>The validated contour is translated into CNC toolpaths and
+                   milled into a 6061 aluminum block, then assembled into the
+                   existing shock tunnel test section.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASSUMPTIONS -->
+  <section class="bg-alt" style="padding:6rem 0;">
+    <div class="container">
+      <span class="label">Assumptions</span>
+      <h2 class="section-title" style="margin-bottom:3rem;">Governing framework</h2>
+
+      <div class="two-col">
+        <div>
+          <h3 style="font-family:var(--font-serif);font-size:1.15rem;color:var(--black);margin-bottom:1.25rem;">MOC Flow Assumptions</h3>
+          <table class="spec-table">
+            <tr><td>Dimensionality</td><td>2D planar</td></tr>
+            <tr><td>Flow regime solved</td><td>Supersonic only</td></tr>
+            <tr><td>Viscosity</td><td>Inviscid (ideal gas)</td></tr>
+            <tr><td>Rotation</td><td>Irrotational</td></tr>
+            <tr><td>Time dependence</td><td>Steady</td></tr>
+            <tr><td>Converging section</td><td>Assumed uniform at throat</td></tr>
+          </table>
+        </div>
+        <div>
+          <h3 style="font-family:var(--font-serif);font-size:1.15rem;color:var(--black);margin-bottom:1.25rem;">CFD Boundary Conditions</h3>
+          <table class="spec-table">
+            <tr><td>Inlet total pressure</td><td>1 – 10 MPa</td></tr>
+            <tr><td>Inlet total temperature</td><td>3,000 K</td></tr>
+            <tr><td>Outlet static pressure</td><td>101,325 Pa (1 atm)</td></tr>
+            <tr><td>Wall — thermal</td><td>Adiabatic</td></tr>
+            <tr><td>Wall — velocity</td><td>No-slip</td></tr>
+            <tr><td>Turbulence model</td><td>k-ω SST</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-brand-name">Hypersonic Nozzle Project</div>
+        <p>Senior design project at Stevens Institute of Technology.
+           Extending hypersonic ground test capability to Mach 14
+           with a helium-driven shock tunnel nozzle.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="../index.html">Overview</a></li>
+          <li><a href="background.html">Background</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="analysis.html">Analysis</a></li>
+          <li><a href="manufacturing.html">Manufacturing</a></li>
+          <li><a href="references.html">References</a></li>
+          <li><a href="members.html">Team</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Analysis</h4>
+        <ul>
+          <li><a href="analysis.html#moc">Method of Characteristics</a></li>
+          <li><a href="analysis.html#cfd">CFD Simulation</a></li>
+          <li><a href="analysis.html#helium">Helium Properties</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Stevens Institute of Technology — Mechanical Engineering</p>
+      <p>Hypersonic Nozzle Senior Design Project</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left:'$$', right:'$$', display:true},
+      {left:'\\(', right:'\\)', display:false}
+    ]
+  })"></script>
+</body>
+</html>

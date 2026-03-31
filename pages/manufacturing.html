@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manufacturing — Hypersonic Nozzle Project</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">
+    Hypersonic Nozzle
+    <span>Stevens Institute of Technology</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Overview</a></li>
+    <li><a href="background.html">Background</a></li>
+    <li><a href="methodology.html">Methodology</a></li>
+    <li><a href="analysis.html">Analysis</a></li>
+    <li><a href="manufacturing.html" class="active">Manufacturing</a></li>
+    <li><a href="references.html">References</a></li>
+    <li><a href="members.html">Team</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero bg-alt">
+    <div class="container">
+      <p class="hero-label">Cost &amp; Fabrication</p>
+      <h1>Manufacturing</h1>
+      <p class="hero-desc">
+        The 2D planar design minimizes machining complexity while maintaining
+        the precision required for shockless Mach 14 flow. Total estimated
+        cost: ~$7,075.
+      </p>
+      <div class="hero-meta">
+        <div class="meta-item">
+          <div class="meta-value">6061</div>
+          <div class="meta-label">Aluminum Grade</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-value">~$7k</div>
+          <div class="meta-label">Estimated Cost</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-value">CNC</div>
+          <div class="meta-label">Contour Method</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MATERIALS -->
+  <section>
+    <div class="container">
+      <span class="label">Materials</span>
+      <h2 class="section-title" style="margin-bottom:3rem;">What it's built from</h2>
+
+      <div class="two-col wide">
+        <div>
+          <h3 style="font-family:var(--font-serif);font-size:1.2rem;color:var(--black);margin-bottom:0.75rem;">6061 Aluminum — Primary Body</h3>
+          <p style="color:var(--mid);font-size:0.9rem;line-height:1.9;font-weight:300;margin-bottom:1.5rem;">
+            Aluminum 6061 was selected for its combination of corrosion resistance,
+            ease of machining, and sufficient structural integrity at operating pressures.
+            A single 24″ × 24″ × 36″ block forms the nozzle body.
+          </p>
+          <table class="spec-table">
+            <tr><td>Block dimensions</td><td>24″ × 24″ × 36″</td></tr>
+            <tr><td>Material cost</td><td>~$5,600</td></tr>
+            <tr><td>Unit price</td><td>~$3/lb &nbsp;&middot;&nbsp; ~$0.27/in³</td></tr>
+            <tr><td>Yield strength</td><td>276 MPa</td></tr>
+            <tr><td>Machinability</td><td>Excellent</td></tr>
+          </table>
+
+          <div style="height:2.5rem;"></div>
+
+          <h3 style="font-family:var(--font-serif);font-size:1.2rem;color:var(--black);margin-bottom:0.75rem;">Plexiglass Side Walls</h3>
+          <p style="color:var(--mid);font-size:0.9rem;line-height:1.9;font-weight:300;">
+            Transparent walls allow schlieren imaging, shadowgraph photography,
+            and laser diagnostics for flow visualization without requiring window
+            ports in the aluminum body. Estimated cost ~$200.
+          </p>
+
+          <div style="height:2.5rem;"></div>
+
+          <h3 style="font-family:var(--font-serif);font-size:1.2rem;color:var(--black);margin-bottom:0.75rem;">Fasteners &amp; Gaskets</h3>
+          <p style="color:var(--mid);font-size:0.9rem;line-height:1.9;font-weight:300;">
+            Stainless fasteners and elastomeric gaskets seal the assembly and
+            prevent helium leakage at block interfaces and side wall joints.
+            Estimated cost ~$75.
+          </p>
+        </div>
+
+        <div>
+          <!-- Cost Breakdown -->
+          <h3 style="font-family:var(--font-serif);font-size:1.2rem;color:var(--black);margin-bottom:1.5rem;">Cost breakdown</h3>
+
+          <div class="cost-bars">
+            <div class="cost-item">
+              <div class="cost-head"><span class="name">6061 Aluminum Block</span><span class="amt">$5,600</span></div>
+              <div class="cost-track"><div class="cost-fill" data-width="86%"></div></div>
+            </div>
+            <div class="cost-item">
+              <div class="cost-head"><span class="name">Aluminum Flat Plates</span><span class="amt">$700</span></div>
+              <div class="cost-track"><div class="cost-fill" data-width="11%"></div></div>
+            </div>
+            <div class="cost-item">
+              <div class="cost-head"><span class="name">CNC Machining</span><span class="amt">$500+</span></div>
+              <div class="cost-track"><div class="cost-fill" data-width="8%"></div></div>
+            </div>
+            <div class="cost-item">
+              <div class="cost-head"><span class="name">Plexiglass Walls</span><span class="amt">$200</span></div>
+              <div class="cost-track"><div class="cost-fill" data-width="3%"></div></div>
+            </div>
+            <div class="cost-item">
+              <div class="cost-head"><span class="name">Fasteners &amp; Gaskets</span><span class="amt">$75</span></div>
+              <div class="cost-track"><div class="cost-fill" data-width="1%"></div></div>
+            </div>
+          </div>
+
+          <div style="padding-top:2rem;border-top:1px solid var(--stone);margin-top:1rem;display:flex;justify-content:space-between;align-items:baseline;">
+            <span style="font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--warm-gray);font-weight:500;">Estimated Total</span>
+            <span style="font-family:var(--font-serif);font-size:2rem;color:var(--black);">~$7,075</span>
+          </div>
+
+          <div class="highlight-box" style="margin-top:1.5rem;">
+            <p>Secondary operations — cutting flat plates and drilling fastener holes —
+               can be performed <strong>in-house</strong> at the Stevens machine shop
+               at minimal cost.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MACHINING -->
+  <section class="bg-alt" style="padding:6rem 0;">
+    <div class="container">
+      <div class="two-col wide">
+        <div>
+          <span class="label">Fabrication</span>
+          <h2 class="section-title">Machining<br><em>process</em></h2>
+          <p class="section-desc">
+            The contoured flow path demands tight tolerances and smooth surface
+            finish. CNC milling is the critical step.
+          </p>
+
+          <div class="highlight-box" style="margin-top:2rem;">
+            <p><strong>Critical tolerance:</strong> The nozzle contour must match
+               the MOC profile precisely. Deviations generate Mach waves that
+               degrade flow uniformity at the test section. Surface finish of
+               Ra &lt; 1.6 μm is required throughout the supersonic portion.</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="steps">
+            <div class="step">
+              <div class="step-num"></div>
+              <div class="step-body">
+                <h4>CNC Contour Milling</h4>
+                <p>The MOC-derived wall profile is converted into a CNC toolpath
+                   and milled into the aluminum block halves. Rate: $60–120/hr,
+                   estimated total over $500.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num"></div>
+              <div class="step-body">
+                <h4>In-House Cutting &amp; Drilling</h4>
+                <p>Flat aluminum plates are cut to size and fastener holes drilled
+                   using Stevens' machine shop — no external vendor, minimal cost.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num"></div>
+              <div class="step-body">
+                <h4>Assembly &amp; Sealing</h4>
+                <p>The two nozzle halves are bolted together with gaskets at the
+                   parting line. Plexiglass side walls are fitted and sealed before
+                   installation into the shock tunnel.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTEGRATION -->
+  <section>
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <span class="label">Tunnel Integration</span>
+          <h2 class="section-title">Fitting the<br>existing <em>tunnel</em></h2>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.5rem;">
+            The new Mach 14 nozzle fits within the existing Stevens shock tunnel
+            dimensions without structural modifications. This constraint was
+            central to the geometry selection — the planar design was partly chosen
+            because it can be sized to fit the current test section.
+          </p>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;">
+            The primary operational change is switching the working fluid from
+            nitrogen to helium. Helium supply and regulator systems must be
+            verified for compatibility, but no major plumbing changes are needed.
+          </p>
+        </div>
+        <div>
+          <table class="spec-table">
+            <tr><td>Structural mods to tunnel</td><td>None required</td></tr>
+            <tr><td>Working fluid change</td><td>N₂ → He</td></tr>
+            <tr><td>Nozzle mounting</td><td>Existing flanges</td></tr>
+            <tr><td>Optical access</td><td>Plexiglass side walls</td></tr>
+            <tr><td>Previous Mach capability</td><td>Mach 6</td></tr>
+            <tr><td>New Mach capability</td><td>Mach 14</td></tr>
+          </table>
+
+          <div class="highlight-box" style="margin-top:1.5rem;">
+            <p>Helium molecules are smaller than nitrogen — standard seals may
+               require upgrade to PTFE or Viton materials to prevent leakage
+               at operating pressures up to <strong>10 MPa</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-brand-name">Hypersonic Nozzle Project</div>
+        <p>Senior design project at Stevens Institute of Technology.
+           Extending hypersonic ground test capability to Mach 14
+           with a helium-driven shock tunnel nozzle.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="../index.html">Overview</a></li>
+          <li><a href="background.html">Background</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="analysis.html">Analysis</a></li>
+          <li><a href="manufacturing.html">Manufacturing</a></li>
+          <li><a href="references.html">References</a></li>
+          <li><a href="members.html">Team</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Analysis</h4>
+        <ul>
+          <li><a href="analysis.html#moc">Method of Characteristics</a></li>
+          <li><a href="analysis.html#cfd">CFD Simulation</a></li>
+          <li><a href="analysis.html#helium">Helium Properties</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Stevens Institute of Technology — Mechanical Engineering</p>
+      <p>Hypersonic Nozzle Senior Design Project</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left:'$$', right:'$$', display:true},
+      {left:'\\(', right:'\\)', display:false}
+    ]
+  })"></script>
+</body>
+</html>

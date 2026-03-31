@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Background &amp; Motivation — Hypersonic Nozzle Project</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+  <style>
+    /* ── page-local styles ── */
+    .feature-img-wrap {
+      width: 100%;
+      max-height: 560px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .feature-img-wrap img {
+      width: 100%;
+      height: 560px;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      opacity: 0.92;
+    }
+
+    .feature-caption {
+      background: var(--black);
+      color: rgba(255,255,255,0.4);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      padding: 0.75rem 2.5rem;
+      font-weight: 300;
+    }
+
+    .feature-caption em {
+      color: rgba(255,255,255,0.6);
+      font-style: normal;
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--stone);
+      border: 1px solid var(--stone);
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 3rem 0;
+    }
+
+    .stat-cell {
+      background: var(--white);
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+
+    .stat-cell .val {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      color: var(--black);
+      display: block;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-cell .lbl {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      font-weight: 500;
+    }
+
+    .stat-cell.accent .val { color: var(--accent); }
+
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5px;
+      background: var(--stone);
+      border: 1px solid var(--stone);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 2rem;
+    }
+
+    .compare-cell {
+      background: var(--white);
+      padding: 2rem;
+    }
+
+    .compare-cell.alt { background: var(--off-white); }
+
+    .compare-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .compare-label.current { color: var(--warm-gray); }
+    .compare-label.upgrade { color: var(--accent); }
+
+    .compare-cell h3 {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: var(--black);
+      margin-bottom: 0.75rem;
+    }
+
+    .compare-cell p {
+      font-size: 0.875rem;
+      color: var(--mid);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    @media (max-width: 640px) {
+      .stat-row { grid-template-columns: repeat(2, 1fr); }
+      .compare-grid { grid-template-columns: 1fr; }
+      .feature-img-wrap img { height: 280px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand">
+    Hypersonic Nozzle
+    <span>Stevens Institute of Technology</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Overview</a></li>
+    <li><a href="background.html" class="active">Background</a></li>
+    <li><a href="methodology.html">Methodology</a></li>
+    <li><a href="analysis.html">Analysis</a></li>
+    <li><a href="manufacturing.html">Manufacturing</a></li>
+    <li><a href="references.html">References</a></li>
+    <li><a href="members.html">Team</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero bg-alt">
+    <div class="container">
+      <p class="hero-label">Context &amp; Motivation</p>
+      <h1>Background</h1>
+      <p class="hero-desc">
+        Hypersonic flight presents some of the most demanding engineering
+        challenges of our time. Ground-based testing is essential — and
+        the Stevens shock tunnel is being upgraded to meet that challenge.
+      </p>
+    </div>
+  </section>
+
+  <!-- NASA IMAGE -->
+  <div class="feature-img-wrap">
+    <img
+      src="../other/Mach-20-Helium-Gas-with-Electron-Beam-NASA.png"
+      alt="Mach 20 helium flow visualized with electron beam fluorescence, NASA"
+    />
+  </div>
+  <div class="feature-caption">
+    <em>Mach 20 Helium Gas with Electron Beam</em>
+    &ensp;—&ensp; NASA Langley Research Center &ensp;&middot;&ensp; Image No. L-1975-02972 &ensp;&middot;&ensp; April 14, 1975
+  </div>
+
+  <!-- WHY HYPERSONIC -->
+  <section>
+    <div class="container">
+      <div class="two-col wide">
+        <div>
+          <span class="label">Motivation</span>
+          <h2 class="section-title">Background &amp;<br><em>motivation</em></h2>
+        </div>
+        <div>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.5rem;">
+            Wind tunnels have been fundamental to aerodynamics research for decades.
+            There are two primary types: <strong style="color:var(--dark);">indraft tunnels</strong>,
+            which operate by creating a vacuum differential to draw air through
+            the test section, and <strong style="color:var(--dark);">shock-type tunnels</strong>,
+            which use a high-pressure rupture to generate a brief but intense flow.
+            Stevens Institute operates a shock-type tunnel.
+          </p>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.5rem;">
+            This project aims to design and fabricate a new nozzle capable of
+            accelerating flow to Mach 14 for use in the Stevens shock tunnel —
+            extending its capability well into the hypersonic regime and enabling
+            research that is currently out of reach at the facility.
+          </p>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;">
+            At hypersonic speeds, aerothermal loads become extreme, shock
+            interactions grow complex, and the boundary between combustion
+            chemistry and fluid mechanics blurs. Experimental validation in
+            controlled facilities is necessary to build confidence in vehicle
+            designs before flight — numerical simulation alone is not sufficient.
+          </p>
+        </div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-cell">
+          <span class="val">&gt; 5</span>
+          <span class="lbl">Mach — Hypersonic Regime</span>
+        </div>
+        <div class="stat-cell">
+          <span class="val">3,000 K</span>
+          <span class="lbl">Stagnation Temperature</span>
+        </div>
+        <div class="stat-cell accent">
+          <span class="val">14</span>
+          <span class="lbl">Target Mach Number</span>
+        </div>
+        <div class="stat-cell">
+          <span class="val">He</span>
+          <span class="lbl">Enabling Working Fluid</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE STEVENS TUNNEL -->
+  <section class="bg-alt" style="padding:6rem 0;">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <span class="label">The Facility</span>
+          <h2 class="section-title">The Stevens<br><em>shock tunnel</em></h2>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-top:1rem;">
+            A shock tunnel generates high total-enthalpy flow by using a
+            reflected shock wave to rapidly heat and compress a test gas.
+            The resulting high-pressure, high-temperature gas is then
+            expanded through a convergent-divergent nozzle into a test
+            section, producing a brief but well-characterized hypersonic
+            flow field — typically lasting milliseconds.
+          </p>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-top:1rem;">
+            The Stevens tunnel is a valuable research asset, currently
+            capable of generating flows up to <strong style="color:var(--dark);">Mach 6</strong>
+            with nitrogen as the working fluid. This project replaces the
+            nozzle section and switches to helium, extending the
+            facility's reach to <strong style="color:var(--accent);">Mach 14</strong> —
+            more than doubling its hypersonic capability.
+          </p>
+        </div>
+        <div>
+          <div class="compare-grid">
+            <div class="compare-cell alt">
+              <span class="compare-label current">Current Configuration</span>
+              <h3>Mach 6</h3>
+              <p>Nitrogen working fluid. Existing nozzle geometry. Operational
+                 and validated, but limited to the lower end of the hypersonic
+                 regime — insufficient for scramjet or re-entry research.</p>
+            </div>
+            <div class="compare-cell">
+              <span class="compare-label upgrade">This Project</span>
+              <h3>Mach 14</h3>
+              <p>Helium working fluid. New 2D planar nozzle designed by MOC
+                 and validated by CFD. Fits existing tunnel structure with
+                 no structural modifications required.</p>
+            </div>
+            <div class="compare-cell">
+              <span class="compare-label current">Working Fluid</span>
+              <h3>Nitrogen (N₂)</h3>
+              <p>Liquefies at 77 K. Constrains achievable stagnation temperatures
+                 and places an effective ceiling on the Mach numbers accessible
+                 without phase-change issues.</p>
+            </div>
+            <div class="compare-cell alt">
+              <span class="compare-label upgrade">Working Fluid</span>
+              <h3>Helium (He)</h3>
+              <p>Liquefies at 4.2 K. Allows the tunnel to reach the high
+                 stagnation temperatures required for Mach 14 while remaining
+                 entirely in the gas phase.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE RESEARCH GAP -->
+  <section>
+    <div class="container">
+      <div class="two-col wide">
+        <div>
+          <span class="label">The Problem</span>
+          <h2 class="section-title">Closing the<br><em>research gap</em></h2>
+        </div>
+        <div>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.5rem;">
+            The most flight-relevant hypersonic conditions — scramjet operation,
+            peak aerothermal loading during re-entry, and hypersonic glide
+            vehicle cruise — occur in the Mach 8–18 range. At Mach 6, the
+            Stevens tunnel sits just below this window.
+          </p>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.5rem;">
+            A Mach 14 facility directly addresses this gap. It enables
+            research into phenomena that are qualitatively different from
+            those at Mach 6: real-gas effects, dissociation, more intense
+            shock–boundary-layer interactions, and combustion at relevant
+            inlet conditions.
+          </p>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;">
+            Crucially, helium-based tunnels have a long heritage at
+            facilities like the NASA Ames Mach 20 tunnel and the Langley
+            Helium Tunnel — demonstrating that this approach is well-understood
+            and technically mature. This project applies that heritage to a
+            university-scale facility for the first time at Stevens.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLICATION AREAS -->
+  <section class="bg-alt" style="padding:6rem 0;">
+    <div class="container">
+      <span class="label">Research Possibilities</span>
+      <h2 class="section-title" style="margin-bottom:3rem;">What becomes<br><em>possible</em></h2>
+      <div class="card-grid">
+        <div class="card">
+          <span class="card-num">01</span>
+          <h3>Development &amp; Testing of Hypersonic Vehicles</h3>
+          <p>The upgraded tunnel enables aerodynamic testing of reentry vehicles,
+             hypersonic aircraft, and missile vehicles at flight-relevant Mach
+             numbers, providing experimental data to validate computational designs
+             before committing to costly flight tests.</p>
+        </div>
+        <div class="card">
+          <span class="card-num">02</span>
+          <h3>Material &amp; Coating Evaluation</h3>
+          <p>At Mach 14, aerothermal heating is severe. The facility enables
+             direct testing of heat shields and thermal protection systems (TPS)
+             under realistic hypersonic conditions — essential for reentry
+             vehicle and leading-edge material qualification.</p>
+        </div>
+        <div class="card">
+          <span class="card-num">03</span>
+          <h3>Sensor &amp; Instrument Calibration</h3>
+          <p>High-speed pressure transducers, heat flux gauges, and other
+             hypersonic instrumentation must be validated in real flow environments.
+             The upgraded tunnel provides a controlled Mach 14 testbed for
+             sensor development and calibration research.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-brand-name">Hypersonic Nozzle Project</div>
+        <p>Senior design project at Stevens Institute of Technology.
+           Extending hypersonic ground test capability to Mach 14
+           with a helium-driven shock tunnel nozzle.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="../index.html">Overview</a></li>
+          <li><a href="background.html">Background</a></li>
+          <li><a href="methodology.html">Methodology</a></li>
+          <li><a href="analysis.html">Analysis</a></li>
+          <li><a href="manufacturing.html">Manufacturing</a></li>
+          <li><a href="references.html">References</a></li>
+          <li><a href="members.html">Team</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Analysis</h4>
+        <ul>
+          <li><a href="analysis.html#moc">Method of Characteristics</a></li>
+          <li><a href="analysis.html#cfd">CFD Simulation</a></li>
+          <li><a href="analysis.html#helium">Helium Properties</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Stevens Institute of Technology &mdash; Mechanical Engineering</p>
+      <p>Hypersonic Nozzle Senior Design Project</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left:'$$', right:'$$', display:true},
+      {left:'\\(', right:'\\)', display:false}
+    ]
+  })"></script>
+</body>
+</html>
