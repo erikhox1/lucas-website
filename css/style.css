@@ -317,6 +317,7 @@ section + section   { padding-top: 0; }
   font-size: 1rem;
   color: var(--dark);
   line-height: 1.6;
+  overflow-x: auto;
 }
 
 /* ── DATA TABLE ───────────────────────────────────────────── */
@@ -798,6 +799,7 @@ nav.is-open .nav-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate
   .ref-link { grid-column: 2; }
 
   .nav-toggle { display: flex; }
+  .prose-columns { columns: 1 !important; }
 
   .nav-links {
     flex-direction: column;

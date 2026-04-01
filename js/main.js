@@ -19,9 +19,11 @@ function animateCostBars() {
 /* ── MACH PROFILE ─────────────────────────────────────────── */
 function drawMachProfile() {
   document.querySelectorAll('.mach-profile').forEach(svg => {
-    const W   = svg.clientWidth  || 500;
-    const H   = svg.clientHeight || 200;
+    const W   = 500;
+    const H   = 200;
     const pad = { l: 36, r: 16, t: 16, b: 36 };
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.setAttribute('preserveAspectRatio', 'none');
     const iW  = W - pad.l - pad.r;
     const iH  = H - pad.t - pad.b;
     const ns  = 'http://www.w3.org/2000/svg';
@@ -146,13 +148,13 @@ function drawNozzleContour() {
   const svg = document.querySelector('#nozzleContour');
   if (!svg) return;
 
-  const W  = svg.clientWidth  || 800;
-  const H  = svg.clientHeight || 260;
+  const W  = 800;
+  const H  = 260;
   const ns = 'http://www.w3.org/2000/svg';
   const cx = 0.36;
 
-  svg.setAttribute('width', W);
-  svg.setAttribute('height', H);
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('preserveAspectRatio', 'none');
 
   const upper = [], lower = [];
   for (let i = 0; i <= 100; i++) {
