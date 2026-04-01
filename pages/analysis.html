@@ -195,8 +195,8 @@
         <div>
           <h3 style="font-family:var(--font-serif);font-size:1.1rem;margin-bottom:1.25rem;color:var(--black);">Boundary conditions</h3>
           <table class="spec-table">
-            <tr><td>Inlet total pressure</td><td>1 – 10 MPa</td></tr>
-            <tr><td>Inlet total temperature</td><td>3,000 K</td></tr>
+            <tr><td>Reservoir pressure</td><td>20 bar (2 MPa)</td></tr>
+            <tr><td>Reservoir temperature</td><td>500 K</td></tr>
             <tr><td>Inlet flow direction</td><td>Axial</td></tr>
             <tr><td>Outlet static pressure</td><td>101,325 Pa</td></tr>
             <tr><td>Wall — thermal</td><td>Adiabatic</td></tr>
@@ -229,35 +229,45 @@
           <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:2rem;">
             Accurate thermodynamic and transport properties of helium are
             essential inputs to both the MOC solver and CFD — particularly at
-            the cryogenic and high-enthalpy extremes of the operating envelope.
-            Real-gas equations of state are used rather than ideal-gas
-            approximations to capture the behavior of helium at high density.
+            the cryogenic temperatures reached as helium expands to Mach 14
+            from the 500 K reservoir. Curve-fit models are used across the full
+            operating temperature range to capture helium's behavior reliably.
           </p>
 
-          <div class="equation">
-            <span class="eq-label">Pressure — Real Gas Equation of State</span>
-            <div class="eq-body">$$p = A_0\rho^2(a'\rho - 1) + R\rho(B_0\rho + 1)T - RC\rho^2(B_0\rho + 1)\frac{1}{T^2}$$</div>
-          </div>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.5rem;">
+            Of the transport properties, <strong style="color:var(--dark);">viscosity</strong>
+            is the most critical input to the boundary layer calculations in both
+            the MOC displacement thickness correction and the CFD solver. At the
+            cryogenic temperatures reached inside the nozzle, helium deviates
+            significantly from the Sutherland law used for air.
+          </p>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.5rem;">
+            A power-law curve fit was calibrated against tabulated NIST data
+            across the operating temperature range. The fit captures the
+            low-temperature behavior accurately, providing a reliable viscosity
+            model for both the MOC boundary layer correction and CFD wall
+            boundary conditions.
+          </p>
 
-          <div class="equation">
-            <span class="eq-label">Enthalpy</span>
-            <div class="eq-body">$$h = (c_v^* + R)T - \left(2A_0 - RB_0T + \frac{4RC}{T^2}\right)\rho - \frac{1}{2}\left(\frac{5RB_0C}{T^2} - 3A_0a'\right)\rho^2$$</div>
+          <div class="dark-diagram-wrap" style="margin-top:0.5rem;">
+            <img
+              src="../other/analysis/curve_fit_for_viscosity_at_low_temp.png"
+              alt="Viscosity vs. temperature curve fit for helium at low temperatures"
+              style="width:100%;"
+            />
           </div>
-
-          <div class="equation">
-            <span class="eq-label">Entropy</span>
-            <div class="eq-body">$$s = c_v^*\ln T - R\!\left[\ln\rho + \left(B_0 + \frac{2C}{T^3}\right)\rho + \frac{B_0 C}{T^3}\rho^2\right]$$</div>
-          </div>
+          <p class="diagram-caption" style="margin-bottom:0;">Helium viscosity curve fit — tabulated NIST data (blue) vs. power-law model (orange). The fit is used directly in the MOC and CFD analyses.</p>
         </div>
 
         <div>
-          <h3 style="font-family:var(--font-serif);font-size:1.1rem;margin-bottom:1.25rem;color:var(--black);">Helium vs. Air — key properties</h3>
+          <h3 style="font-family:var(--font-serif);font-size:1.1rem;margin-bottom:1.25rem;color:var(--black);">Helium vs. Air vs. Nitrogen — key properties</h3>
           <table class="data-table">
             <thead>
               <tr>
                 <th>Property</th>
                 <th>Helium</th>
                 <th>Air</th>
+                <th>Nitrogen</th>
               </tr>
             </thead>
             <tbody>
@@ -265,43 +275,34 @@
                 <td>γ</td>
                 <td>1.667</td>
                 <td style="color:var(--warm-gray);">1.400</td>
+                <td style="color:var(--warm-gray);">1.400</td>
               </tr>
               <tr>
                 <td>R (gas constant)</td>
                 <td>2077 J/kg·K</td>
                 <td style="color:var(--warm-gray);">287 J/kg·K</td>
+                <td style="color:var(--warm-gray);">297 J/kg·K</td>
               </tr>
               <tr>
                 <td>c_p</td>
                 <td>5193 J/kg·K</td>
                 <td style="color:var(--warm-gray);">1005 J/kg·K</td>
+                <td style="color:var(--warm-gray);">1040 J/kg·K</td>
               </tr>
               <tr>
                 <td>Liquefaction temp.</td>
                 <td>4.2 K @ 1 atm</td>
-                <td style="color:var(--warm-gray);">77 K (N₂)</td>
+                <td style="color:var(--warm-gray);">~90 K</td>
+                <td style="color:var(--warm-gray);">77 K @ 1 atm</td>
               </tr>
               <tr>
                 <td>Speed of sound @ 300 K</td>
                 <td>1020 m/s</td>
                 <td style="color:var(--warm-gray);">347 m/s</td>
+                <td style="color:var(--warm-gray);">353 m/s</td>
               </tr>
             </tbody>
           </table>
-
-          <p style="font-size:0.85rem;color:var(--mid);line-height:1.8;font-weight:300;margin-top:1.5rem;margin-bottom:1.25rem;">
-            Viscosity is modeled via a power-law curve fit calibrated at low
-            temperatures, where helium deviates from the Sutherland law.
-            The blue curve shows tabulated data; the orange curve is the fitted model.
-          </p>
-
-          <div class="dark-diagram-wrap">
-            <img
-              src="../other/analysis/curve_fit_for_viscosity_at_low_temp.png"
-              alt="Viscosity vs. temperature curve fit for helium at low temperatures"
-            />
-          </div>
-          <p class="diagram-caption">Helium viscosity curve fit — tabulated data (blue) vs. power-law model (orange)</p>
         </div>
       </div>
     </div>

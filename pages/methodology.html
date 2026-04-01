@@ -118,14 +118,17 @@
           <h2 class="section-title">Why <em>helium</em>?</h2>
           <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.5rem;">
             The choice of working fluid is the enabling technology that makes
-            Mach 14 achievable. Helium allows helium-based wind tunnels to reach
-            much higher Mach numbers than systems using air or nitrogen.
+            Mach 14 achievable. As gas accelerates through the nozzle to
+            Mach 14, its static temperature drops dramatically — far below
+            what air or nitrogen can sustain without liquefying.
           </p>
           <p style="color:var(--mid);line-height:1.9;font-weight:300;">
-            At high Mach numbers, required stagnation temperature scales with
-            M². For air at Mach 14, T₀ would exceed 20,000 K — far beyond
-            practical limits. Helium's properties allow achievable stagnation
-            temperatures (~3,000 K) to produce the same Mach number.
+            With a reservoir temperature of 500 K, helium expanded to Mach 14
+            reaches an exit static temperature of approximately 7.5 K — just
+            above its 4.2 K liquefaction point. Under the same conditions,
+            nitrogen reaches ~12 K, well below its 77 K threshold, causing
+            phase change inside the nozzle. Helium is the only viable
+            working fluid.
           </p>
         </div>
 
@@ -139,9 +142,10 @@
             </div>
             <div class="card">
               <h3>Higher Mach Numbers</h3>
-              <p>Higher stagnation temperatures required for Mach 14 are not
-                 achievable with air without phase change. Helium removes this
-                 constraint entirely.</p>
+              <p>When expanded to Mach 14 from a 500 K reservoir, static exit
+                 temperature drops to ~7.5 K — just above helium's 4.2 K
+                 liquefaction point. Air and nitrogen would undergo phase change
+                 in the nozzle under these same conditions.</p>
             </div>
             <div class="card">
               <h3>Minimal Infrastructure Change</h3>
@@ -234,8 +238,8 @@
         <div>
           <h3 style="font-family:var(--font-serif);font-size:1.15rem;color:var(--black);margin-bottom:1.25rem;">CFD Boundary Conditions</h3>
           <table class="spec-table">
-            <tr><td>Inlet total pressure</td><td>1 – 10 MPa</td></tr>
-            <tr><td>Inlet total temperature</td><td>3,000 K</td></tr>
+            <tr><td>Reservoir pressure</td><td>20 bar (2 MPa)</td></tr>
+            <tr><td>Reservoir temperature</td><td>500 K</td></tr>
             <tr><td>Outlet static pressure</td><td>101,325 Pa (1 atm)</td></tr>
             <tr><td>Wall — thermal</td><td>Adiabatic</td></tr>
             <tr><td>Wall — velocity</td><td>No-slip</td></tr>

@@ -39,10 +39,6 @@
       </p>
       <div class="hero-meta">
         <div class="meta-item">
-          <div class="meta-value">14</div>
-          <div class="meta-label">Target Mach</div>
-        </div>
-        <div class="meta-item">
           <div class="meta-value">He</div>
           <div class="meta-label">Working Fluid</div>
         </div>
@@ -51,8 +47,16 @@
           <div class="meta-label">Nozzle Type</div>
         </div>
         <div class="meta-item">
-          <div class="meta-value">3,000 K</div>
-          <div class="meta-label">Stagnation Temp.</div>
+          <div class="meta-value">500 K</div>
+          <div class="meta-label">Reservoir Temp.</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-value">20 Bar</div>
+          <div class="meta-label">Reservoir Pressure</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-value">5e6 1/m</div>
+          <div class="meta-label">Reynolds Number</div>
         </div>
       </div>
     </div>
@@ -65,7 +69,7 @@
         <svg id="nozzleContour" style="width:100%;height:260px;"></svg>
       </div>
       <p class="diagram-caption">
-        2D planar symmetric nozzle contour — MOC characteristic lines shown
+        2D planar symmetric nozzle contour
       </p>
     </div>
   </section>
@@ -82,20 +86,16 @@
           <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.5rem;">
             The Stevens shock tunnel currently generates flows up to Mach 6.
             This project redesigns the nozzle section to reach Mach 14 — a
-            regime relevant to scramjet propulsion, re-entry vehicles, and
-            hypersonic glide vehicles.
+            regime relevant to high-speed boundary-layer physics, 
+            Hypersonic flight, and re-entry vehicles.
           </p>
           <p style="color:var(--mid);line-height:1.9;font-weight:300;">
             The key enabler is helium. Its uniquely low liquefaction temperature
-            allows the tunnel to operate at the high stagnation temperatures
-            required for Mach 14, something that is not achievable with air or
-            nitrogen at any practical facility scale.
+            allows the tunnel to operate at the low temperatures required for 
+            Mach 14, something that is not achievable with air or nitrogen 
+            at any practical facility scale.
           </p>
-
-          <div class="pull-quote">
-            <p>"Design and fabricate a shockless Mach 14 nozzle for the Stevens
-            shock tunnel using helium as the working fluid."</p>
-          </div>
+          
         </div>
       </div>
     </div>
@@ -133,32 +133,31 @@
     </div>
   </section>
 
-  <!-- MACH PROFILE -->
+  <!-- GRADUAL EXPANSION NOZZLE -->
   <section>
     <div class="container">
       <div class="two-col">
         <div>
-          <span class="label">Flow Profile</span>
-          <h2 class="section-title">Mach number<br>along the nozzle</h2>
+          <span class="label">Nozzle Design</span>
+          <h2 class="section-title">Gradual expansion<br>for uniform flow</h2>
           <p class="section-desc" style="margin-bottom:2rem;">
-            Helium accelerates from subsonic conditions at the inlet, passes
-            through a sonic throat (M&nbsp;=&nbsp;1), then expands through
-            the shaped diverging section to reach M&nbsp;=&nbsp;14 at the exit.
+            The diverging section is shaped by the Method of Characteristics
+            to produce a smooth, gradual expansion — eliminating internal
+            shocks and delivering the uniform, low-turbulence flow field
+            essential for accurate model testing.
           </p>
-          <table class="spec-table">
-            <tr><td>Stagnation pressure</td><td>1 – 10 MPa</td></tr>
-            <tr><td>Stagnation temperature</td><td>3,000 K</td></tr>
-            <tr><td>Exit Mach number</td><td>14</td></tr>
-            <tr><td>Working fluid</td><td>Helium</td></tr>
-            <tr><td>Ratio of specific heats</td><td>γ = 1.667</td></tr>
-            <tr><td>Nozzle geometry</td><td>2D planar symmetric</td></tr>
-          </table>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:2rem;">
+            Rather than a simple conical expansion, the MOC-derived contour
+            carefully sets the wall turning angle at every axial station, 
+            producing parallel, shock-free flow at the exit plane without 
+            disturbing the test model.
+          </p>
         </div>
         <div>
           <div class="diagram-wrap">
             <svg class="mach-profile"></svg>
           </div>
-          <p class="diagram-caption">Mach number vs. normalized axial position</p>
+          <p class="diagram-caption">Mach number vs. normalized axial position — gradual acceleration to M&nbsp;=&nbsp;14 at exit</p>
         </div>
       </div>
     </div>
