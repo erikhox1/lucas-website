@@ -258,10 +258,48 @@ function setActiveNav() {
   });
 }
 
+/* ── LIGHTBOX ─────────────────────────────────────────────── */
+function initLightbox() {
+  const overlay = document.createElement('div');
+  overlay.className = 'lightbox-overlay';
+
+  const img = document.createElement('img');
+  const btn = document.createElement('button');
+  btn.className = 'lightbox-close';
+  btn.setAttribute('aria-label', 'Close');
+  btn.textContent = '×';
+
+  overlay.appendChild(img);
+  overlay.appendChild(btn);
+  document.body.appendChild(overlay);
+
+  function open(src, alt) {
+    img.src = src;
+    img.alt = alt || '';
+    overlay.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    overlay.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  btn.addEventListener('click', close);
+  overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+  document.querySelectorAll('.analysis-img, .dark-diagram-wrap img').forEach(el => {
+    el.classList.add('lightbox-trigger');
+    el.addEventListener('click', () => open(el.src, el.alt));
+  });
+}
+
 /* ── INIT ─────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   animateCostBars();
   drawMachProfile();
   drawNozzleContour();
   setActiveNav();
+  initLightbox();
 });

@@ -52,11 +52,6 @@
             the flow passage.
           </p>
 
-          <div class="pull-quote">
-            <p>"Modeling and fabrication is much easier and cheaper compared
-               to the axisymmetric nozzle."</p>
-          </div>
-
           <p style="color:var(--mid);font-size:0.9rem;line-height:1.9;font-weight:300;margin-top:1.5rem;">
             The contour can be machined from two smaller material pieces rather
             than a single large rotational body, the throat assembly is
@@ -221,32 +216,63 @@
   <section class="bg-alt" style="padding:6rem 0;">
     <div class="container">
       <span class="label">Assumptions</span>
-      <h2 class="section-title" style="margin-bottom:3rem;">Governing framework</h2>
+      <h2 class="section-title" style="margin-bottom:1rem;">Governing framework</h2>
+      <p style="color:var(--mid);line-height:1.9;font-weight:300;max-width:680px;margin-bottom:3rem;">
+        MOC and CFD are complementary tools — each makes a different set of physical
+        simplifications. The table below shows where they agree, and where they diverge.
+      </p>
 
-      <div class="two-col">
-        <div>
-          <h3 style="font-family:var(--font-serif);font-size:1.15rem;color:var(--black);margin-bottom:1.25rem;">MOC Flow Assumptions</h3>
-          <table class="spec-table">
-            <tr><td>Dimensionality</td><td>2D planar</td></tr>
-            <tr><td>Flow regime solved</td><td>Supersonic only</td></tr>
-            <tr><td>Viscosity</td><td>Inviscid (ideal gas)</td></tr>
-            <tr><td>Rotation</td><td>Irrotational</td></tr>
-            <tr><td>Time dependence</td><td>Steady</td></tr>
-            <tr><td>Converging section</td><td>Assumed uniform at throat</td></tr>
-          </table>
-        </div>
-        <div>
-          <h3 style="font-family:var(--font-serif);font-size:1.15rem;color:var(--black);margin-bottom:1.25rem;">CFD Boundary Conditions</h3>
-          <table class="spec-table">
-            <tr><td>Reservoir pressure</td><td>20 bar (2 MPa)</td></tr>
-            <tr><td>Reservoir temperature</td><td>500 K</td></tr>
-            <tr><td>Outlet static pressure</td><td>101,325 Pa (1 atm)</td></tr>
-            <tr><td>Wall — thermal</td><td>Adiabatic</td></tr>
-            <tr><td>Wall — velocity</td><td>No-slip</td></tr>
-            <tr><td>Turbulence model</td><td>k-ω SST</td></tr>
-          </table>
-        </div>
-      </div>
+      <table class="spec-table" style="width:100%;">
+        <thead>
+          <tr>
+            <th style="text-align:left;padding:0.75rem 1rem;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);border-bottom:1px solid var(--line);">Assumption</th>
+            <th style="text-align:left;padding:0.75rem 1rem;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);border-bottom:1px solid var(--line);">MOC</th>
+            <th style="text-align:left;padding:0.75rem 1rem;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);border-bottom:1px solid var(--line);">CFD (RANS)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:0.75rem 1rem;border-bottom:1px solid var(--line);color:var(--black);font-weight:500;">Dimensionality</td>
+            <td style="padding:0.75rem 1rem;border-bottom:1px solid var(--line);color:var(--mid);">2D planar</td>
+            <td style="padding:0.75rem 1rem;border-bottom:1px solid var(--line);color:var(--mid);">2D planar (same geometry)</td>
+          </tr>
+          <tr>
+            <td style="padding:0.75rem 1rem;border-bottom:1px solid var(--line);color:var(--black);font-weight:500;">Time dependence</td>
+            <td style="padding:0.75rem 1rem;border-bottom:1px solid var(--line);color:var(--mid);">Steady</td>
+            <td style="padding:0.75rem 1rem;border-bottom:1px solid var(--line);color:var(--mid);">Steady (RANS time-averaged)</td>
+          </tr>
+          <tr>
+            <td style="padding:0.75rem 1rem;border-bottom:1px solid var(--line);color:var(--black);font-weight:500;">Viscosity</td>
+            <td style="padding:0.75rem 1rem;border-bottom:1px solid var(--line);color:var(--mid);">Inviscid — no boundary layer</td>
+            <td style="padding:0.75rem 1rem;border-bottom:1px solid var(--line);color:var(--mid);">Viscous — full Navier-Stokes</td>
+          </tr>
+          <tr>
+            <td style="padding:0.75rem 1rem;border-bottom:1px solid var(--line);color:var(--black);font-weight:500;">Turbulence</td>
+            <td style="padding:0.75rem 1rem;border-bottom:1px solid var(--line);color:var(--mid);">Not modeled (irrotational)</td>
+            <td style="padding:0.75rem 1rem;border-bottom:1px solid var(--line);color:var(--mid);">k-ω SST closure</td>
+          </tr>
+          <tr>
+            <td style="padding:0.75rem 1rem;border-bottom:1px solid var(--line);color:var(--black);font-weight:500;">Shock capturing</td>
+            <td style="padding:0.75rem 1rem;border-bottom:1px solid var(--line);color:var(--mid);">Cannot — assumes smooth, continuous flow</td>
+            <td style="padding:0.75rem 1rem;border-bottom:1px solid var(--line);color:var(--mid);">Native — resolves shocks and separation</td>
+          </tr>
+          <tr>
+            <td style="padding:0.75rem 1rem;border-bottom:1px solid var(--line);color:var(--black);font-weight:500;">Domain covered</td>
+            <td style="padding:0.75rem 1rem;border-bottom:1px solid var(--line);color:var(--mid);">Supersonic region only</td>
+            <td style="padding:0.75rem 1rem;border-bottom:1px solid var(--line);color:var(--mid);">Full nozzle (subsonic through supersonic)</td>
+          </tr>
+          <tr>
+            <td style="padding:0.75rem 1rem;border-bottom:1px solid var(--line);color:var(--black);font-weight:500;">Wall condition</td>
+            <td style="padding:0.75rem 1rem;border-bottom:1px solid var(--line);color:var(--mid);">Slip wall (flow tangency only)</td>
+            <td style="padding:0.75rem 1rem;border-bottom:1px solid var(--line);color:var(--mid);">No-slip, adiabatic</td>
+          </tr>
+          <tr>
+            <td style="padding:0.75rem 1rem;color:var(--black);font-weight:500;">Fluid model</td>
+            <td style="padding:0.75rem 1rem;color:var(--mid);">Calorically perfect gas (constant γ)</td>
+            <td style="padding:0.75rem 1rem;color:var(--mid);">Ideal gas with temperature-dependent properties</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 

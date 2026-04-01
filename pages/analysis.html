@@ -33,77 +33,213 @@
       <p class="hero-label">Technical Analysis</p>
       <h1>Flow Analysis</h1>
       <p class="hero-desc">
-        Three complementary methods — Method of Characteristics, CFD, and
-        helium thermodynamic modeling — work together to design and validate
-        the nozzle contour.
+        Four sequential analyses — isentropic flow sizing, helium viscosity
+        characterization, contour generation via Sivells' Method of
+        Characteristics, and CFD validation — build from first principles
+        to a validated Mach 14 nozzle design.
       </p>
     </div>
   </section>
 
-  <!-- MOC -->
-  <section id="moc">
+  <!-- ISENTROPIC ANALYSIS -->
+  <section id="isentropic">
     <div class="container">
       <div class="two-col wide">
         <div>
           <span class="label">Analysis 01</span>
-          <h2 class="section-title">Method of<br><em>Characteristics</em></h2>
+          <h2 class="section-title">Isentropic<br><em>Flow Analysis</em></h2>
           <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.5rem;">
-            The MOC is the primary tool for designing the nozzle wall profile.
-            It converts the governing partial differential equations for
-            supersonic flow into ordinary differential equations along
-            characteristic lines — curves along which pressure disturbances
-            propagate through the gas.
+            Before generating a nozzle contour, an isentropic analysis was
+            performed to establish the fundamental flow conditions at the
+            design point. Assuming calorically perfect helium and no losses,
+            the isentropic relations directly link reservoir conditions to
+            the exit state as a function of Mach number.
           </p>
           <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.5rem;">
-            The method applies to two-dimensional, supersonic, steady, inviscid,
-            and irrotational flow of ideal helium. Only the diverging section is
-            designed by MOC; the converging section is assumed to deliver a
-            uniform sonic condition at the throat.
+            This analysis compared candidate operating points across a range
+            of Mach numbers, evaluating exit temperature, exit pressure,
+            unit Reynolds number, and required throat-to-exit area ratio.
+            The results confirmed that Mach 14 with helium is achievable
+            within the tunnel's pressure and temperature limits, and set the
+            target conditions used in all downstream analyses.
           </p>
-          <p style="color:var(--mid);line-height:1.9;font-weight:300;">
-            Characteristic line intersections are used to cancel Mach wave
-            reflections, producing a shockless, uniform exit flow at the design
-            Mach number of 14.
-          </p>
-
-          <div class="highlight-box">
-            <p><strong>Validation result:</strong> The Python MOC implementation
-            generated contours showing remarkable similarity to CFD results across
-            the Mach 6–14 operating range, confirming the analytical approach.</p>
-          </div>
         </div>
 
         <div>
-          <div class="diagram-wrap" style="padding:1.25rem;">
-            <img
-              class="analysis-img"
-              src="../other/analysis/charecteristics_graph.png"
-              alt="MOC characteristics graph showing wall contour and boundary layer displacement"
-            />
-          </div>
-          <p class="diagram-caption">Characteristic lines, wall contour, and boundary layer displacement (\(\delta^*\)) — MOC output</p>
-
           <div class="equation mt-3">
-            <span class="eq-label">Prandtl-Meyer Function</span>
-            <div class="eq-body">$$\nu(M) = \sqrt{\frac{\gamma+1}{\gamma-1}}\arctan\!\sqrt{\frac{\gamma-1}{\gamma+1}(M^2-1)}\;-\;\arctan\!\sqrt{M^2-1}$$</div>
+            <span class="eq-label">Isentropic Temperature Ratio</span>
+            <div class="eq-body">$$\frac{T_0}{T} = 1 + \frac{\gamma - 1}{2}M^2$$</div>
+          </div>
+          <div class="equation" style="margin-top:1rem;">
+            <span class="eq-label">Isentropic Pressure Ratio</span>
+            <div class="eq-body">$$\frac{p_0}{p} = \left(1 + \frac{\gamma - 1}{2}M^2\right)^{\!\gamma/(\gamma-1)}$$</div>
           </div>
         </div>
       </div>
 
-      <!-- Sivells reference diagram -->
-      <div class="full-width-figure">
+      <div class="full-width-figure" style="margin-top:3rem;">
         <div class="diagram-wrap" style="padding:2rem 2.5rem;">
           <img
             class="analysis-img"
-            src="../other/analysis/computer_program_for_aerodynamic_design_sivells_1978.png"
-            alt="Sivells 1978 nozzle design diagram showing inflection region, radial flow, and uniform flow zones"
+            src="../other/analysis/thermo.png"
+            alt="Isentropic analysis — exit temperature, pressure, Reynolds number, and diameter vs. Mach number"
+            style="width:100%;max-width:100%;"
           />
         </div>
         <p class="diagram-caption">
-          Nozzle flow region schematic — Sivells (1978). Showing throat (T), inflection region (G),
-          radial flow, and the uniform exit flow zone (D). The MOC solver follows this region structure.
+          Isentropic analysis — exit temperature, exit pressure, unit Reynolds
+          number, and nozzle diameter compared across the operating Mach range.
+          Helium reservoir at 500 K, 20 bar.
         </p>
       </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="divider"></div></div>
+
+  <!-- HELIUM -->
+  <section id="helium" style="padding-top:0;">
+    <div class="container">
+      <div class="two-col wide">
+        <div>
+          <span class="label">Analysis 02</span>
+          <h2 class="section-title">Helium<br><em>characterization</em></h2>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:2rem;">
+            Before generating a nozzle contour with Sivells' code, helium's
+            transport properties must be characterized across the full operating
+            temperature range — particularly at the cryogenic temperatures
+            reached as helium expands from the 500 K reservoir to Mach 14.
+            Sivells' code requires viscosity constants as input card parameters
+            to perform its boundary layer displacement correction.
+          </p>
+
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.5rem;">
+            Helium's <strong style="color:var(--dark);">viscosity</strong> does not
+            follow the Sutherland law formulated for air at these temperatures.
+            A Sutherland law regression was therefore performed against tabulated
+            NIST data across the nozzle's operating temperature range to extract
+            the Sutherland constants (C₁, C₂) appropriate for helium. These
+            constants were then supplied directly as input cards to Sivells' code.
+          </p>
+          <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.5rem;">
+            The curve fit shown below confirms the regression accurately reproduces
+            helium's low-temperature viscosity behavior, validating the constants
+            used in Sivells' boundary layer correction routine.
+          </p>
+
+          <div class="dark-diagram-wrap" style="margin-top:0.5rem;">
+            <img
+              src="../other/analysis/curve_fit_for_viscosity_at_low_temp.png"
+              alt="Viscosity vs. temperature curve fit for helium at low temperatures"
+              style="width:100%;"
+            />
+          </div>
+          <p class="diagram-caption" style="margin-bottom:0;">Helium viscosity Sutherland regression — tabulated NIST data (blue) vs. Sutherland fit (orange). The extracted constants C₁ and C₂ are supplied as input cards to Sivells' MOC code.</p>
+        </div>
+
+        <div>
+          <h3 style="font-family:var(--font-serif);font-size:1.1rem;margin-bottom:1.25rem;color:var(--black);">Helium vs. Air vs. Nitrogen — key properties</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Helium</th>
+                <th>Air</th>
+                <th>Nitrogen</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>γ</td>
+                <td>1.667</td>
+                <td style="color:var(--warm-gray);">1.400</td>
+                <td style="color:var(--warm-gray);">1.400</td>
+              </tr>
+              <tr>
+                <td>R (gas constant)</td>
+                <td>2.07 J/g·K</td>
+                <td style="color:var(--warm-gray);">0.287 J/g·K</td>
+                <td style="color:var(--warm-gray);">0.297 J/g·K</td>
+              </tr>
+              <tr>
+                <td>c_p (specific heat)</td>
+                <td> 5.193 J/g·K</td>
+                <td style="color:var(--warm-gray);"> 1.005 J/g·K</td>
+                <td style="color:var(--warm-gray);"> 1.040 J/g·K</td>
+              </tr>
+              <tr>
+                <td>Liquefaction temp.</td>
+                <td>4.2 K</td>
+                <td style="color:var(--warm-gray);">90 K</td>
+                <td style="color:var(--warm-gray);">77 K</td>
+              </tr>
+              <tr>
+                <td>Sound Speed (300 K)</td>
+                <td>1020 m/s</td>
+                <td style="color:var(--warm-gray);">347 m/s</td>
+                <td style="color:var(--warm-gray);">353 m/s</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="divider"></div></div>
+
+  <!-- MOC -->
+  <section id="moc" style="padding:4rem 0;">
+    <div class="container">
+      <span class="label">Analysis 03</span>
+      <h2 class="section-title" style="margin-bottom:1.75rem;">Method of<br><em>Characteristics</em></h2>
+
+      <div style="columns:2;column-gap:3.5rem;margin-bottom:1.75rem;">
+        <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.25rem;break-inside:avoid;">
+          With isentropic conditions established and helium viscosity constants
+          in hand, nozzle wall contours were generated using
+          <strong style="color:var(--dark);">Sivells' MOC code</strong> — a
+          well-established and trusted program for aerodynamic nozzle design
+          (Sivells, 1978). The code uses the Method of Characteristics to
+          convert the governing partial differential equations for supersonic
+          flow into ordinary differential equations along characteristic lines,
+          tracing the curves along which pressure disturbances propagate
+          through the gas.
+        </p>
+        <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.25rem;break-inside:avoid;">
+          The method applies to two-dimensional, supersonic, steady, inviscid,
+          and irrotational flow of ideal helium. Only the diverging section is
+          designed by MOC; the converging section is assumed to deliver a
+          uniform sonic condition at the throat. The helium viscosity constants
+          derived in Analysis 02 were supplied directly as input card parameters
+          to Sivells' code to account for boundary layer displacement.
+        </p>
+        <p style="color:var(--mid);line-height:1.9;font-weight:300;break-inside:avoid;">
+          Characteristic line intersections are used to cancel Mach wave
+          reflections, producing a shockless, uniform exit flow at the design
+          Mach number of 14.
+        </p>
+      </div>
+
+      <div class="highlight-box" style="margin-bottom:2rem;">
+        <p><strong>Validation result:</strong> Contours generated by Sivells'
+        code showed remarkable similarity to CFD results across the Mach 6–14
+        operating range, confirming the analytical approach.</p>
+      </div>
+
+      <div class="equation" style="margin-bottom:2rem;">
+        <span class="eq-label">Prandtl-Meyer Function</span>
+        <div class="eq-body">$$\nu(M) = \sqrt{\frac{\gamma+1}{\gamma-1}}\arctan\!\sqrt{\frac{\gamma-1}{\gamma+1}(M^2-1)}\;-\;\arctan\!\sqrt{M^2-1}$$</div>
+      </div>
+
+      <div class="diagram-wrap" style="padding:2rem 2.5rem;">
+        <img
+          class="analysis-img"
+          src="../other/analysis/charecteristics_graph.png"
+          alt="MOC characteristics graph showing wall contour and boundary layer displacement"
+        />
+      </div>
+      <p class="diagram-caption">Characteristic lines, wall contour, and boundary layer displacement (\(\delta^*\)) — MOC output</p>
     </div>
   </section>
 
@@ -142,7 +278,7 @@
   <!-- CFD -->
   <section id="cfd" style="padding-top:0;">
     <div class="container">
-      <span class="label">Analysis 02</span>
+      <span class="label">Analysis 04</span>
       <h2 class="section-title" style="margin-bottom:1.5rem;">CFD via <em>ANSYS</em></h2>
 
       <div class="diagram-wrap" style="padding:1.5rem;margin-bottom:0.75rem;">
@@ -170,7 +306,7 @@
             expansion waves.
           </p>
           <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.5rem;">
-            The simulations specify <strong style="color:var(--dark);">ideal air</strong> as the working
+            The simulations specify <strong style="color:var(--dark);">ideal helium</strong> as the working
             fluid with symmetry applied where applicable, and mesh refinement
             concentrated near walls, the throat, and expansion regions to ensure
             accuracy in high-gradient zones.
@@ -198,13 +334,12 @@
             <tr><td>Reservoir pressure</td><td>20 bar (2 MPa)</td></tr>
             <tr><td>Reservoir temperature</td><td>500 K</td></tr>
             <tr><td>Inlet flow direction</td><td>Axial</td></tr>
-            <tr><td>Outlet static pressure</td><td>101,325 Pa</td></tr>
+            <tr><td>Outlet static pressure</td><td>1 Bar</td></tr>
             <tr><td>Wall — thermal</td><td>Adiabatic</td></tr>
             <tr><td>Wall — velocity</td><td>No-slip</td></tr>
             <tr><td>Turbulence model</td><td>k-ω SST</td></tr>
-            <tr><td>Fluid</td><td>Ideal air</td></tr>
+            <tr><td>Fluid</td><td>Ideal helium</td></tr>
             <tr><td>Domain type</td><td>2D axisymmetric / 3D</td></tr>
-            <tr><td>y⁺ target</td><td>≤ 1 (wall-resolved)</td></tr>
           </table>
 
           <p style="font-size:0.85rem;color:var(--mid);line-height:1.8;font-weight:300;margin-top:1.5rem;">
@@ -217,96 +352,6 @@
     </div>
   </section>
 
-  <div class="container"><div class="divider"></div></div>
-
-  <!-- HELIUM -->
-  <section id="helium" style="padding-top:0;">
-    <div class="container">
-      <div class="two-col wide">
-        <div>
-          <span class="label">Analysis 03</span>
-          <h2 class="section-title">Helium<br><em>characterization</em></h2>
-          <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:2rem;">
-            Accurate thermodynamic and transport properties of helium are
-            essential inputs to both the MOC solver and CFD — particularly at
-            the cryogenic temperatures reached as helium expands to Mach 14
-            from the 500 K reservoir. Curve-fit models are used across the full
-            operating temperature range to capture helium's behavior reliably.
-          </p>
-
-          <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.5rem;">
-            Of the transport properties, <strong style="color:var(--dark);">viscosity</strong>
-            is the most critical input to the boundary layer calculations in both
-            the MOC displacement thickness correction and the CFD solver. At the
-            cryogenic temperatures reached inside the nozzle, helium deviates
-            significantly from the Sutherland law used for air.
-          </p>
-          <p style="color:var(--mid);line-height:1.9;font-weight:300;margin-bottom:1.5rem;">
-            A power-law curve fit was calibrated against tabulated NIST data
-            across the operating temperature range. The fit captures the
-            low-temperature behavior accurately, providing a reliable viscosity
-            model for both the MOC boundary layer correction and CFD wall
-            boundary conditions.
-          </p>
-
-          <div class="dark-diagram-wrap" style="margin-top:0.5rem;">
-            <img
-              src="../other/analysis/curve_fit_for_viscosity_at_low_temp.png"
-              alt="Viscosity vs. temperature curve fit for helium at low temperatures"
-              style="width:100%;"
-            />
-          </div>
-          <p class="diagram-caption" style="margin-bottom:0;">Helium viscosity curve fit — tabulated NIST data (blue) vs. power-law model (orange). The fit is used directly in the MOC and CFD analyses.</p>
-        </div>
-
-        <div>
-          <h3 style="font-family:var(--font-serif);font-size:1.1rem;margin-bottom:1.25rem;color:var(--black);">Helium vs. Air vs. Nitrogen — key properties</h3>
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Property</th>
-                <th>Helium</th>
-                <th>Air</th>
-                <th>Nitrogen</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>γ</td>
-                <td>1.667</td>
-                <td style="color:var(--warm-gray);">1.400</td>
-                <td style="color:var(--warm-gray);">1.400</td>
-              </tr>
-              <tr>
-                <td>R (gas constant)</td>
-                <td>2077 J/kg·K</td>
-                <td style="color:var(--warm-gray);">287 J/kg·K</td>
-                <td style="color:var(--warm-gray);">297 J/kg·K</td>
-              </tr>
-              <tr>
-                <td>c_p</td>
-                <td>5193 J/kg·K</td>
-                <td style="color:var(--warm-gray);">1005 J/kg·K</td>
-                <td style="color:var(--warm-gray);">1040 J/kg·K</td>
-              </tr>
-              <tr>
-                <td>Liquefaction temp.</td>
-                <td>4.2 K @ 1 atm</td>
-                <td style="color:var(--warm-gray);">~90 K</td>
-                <td style="color:var(--warm-gray);">77 K @ 1 atm</td>
-              </tr>
-              <tr>
-                <td>Speed of sound @ 300 K</td>
-                <td>1020 m/s</td>
-                <td style="color:var(--warm-gray);">347 m/s</td>
-                <td style="color:var(--warm-gray);">353 m/s</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </section>
 
 </main>
 
@@ -334,9 +379,10 @@
       <div class="footer-col">
         <h4>On This Page</h4>
         <ul>
+          <li><a href="#isentropic">Isentropic Analysis</a></li>
+          <li><a href="#helium">Helium Characterization</a></li>
           <li><a href="#moc">Method of Characteristics</a></li>
           <li><a href="#cfd">CFD Simulation</a></li>
-          <li><a href="#helium">Helium Properties</a></li>
         </ul>
       </div>
     </div>

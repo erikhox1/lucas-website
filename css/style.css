@@ -637,6 +637,56 @@ footer {
   border-radius: 6px;
 }
 
+/* ── LIGHTBOX ─────────────────────────────────────────────── */
+.lightbox-trigger {
+  cursor: zoom-in;
+}
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 12, 10, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  padding: 2rem;
+}
+
+.lightbox-overlay.is-open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lightbox-overlay img {
+  max-width: 92vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+  display: block;
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.15s;
+  font-family: var(--font-sans);
+}
+
+.lightbox-close:hover { opacity: 1; }
+
 /* ── MEMBER CARDS ─────────────────────────────────────────── */
 .members-grid {
   display: grid;
