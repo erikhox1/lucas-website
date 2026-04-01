@@ -295,6 +295,21 @@ function initLightbox() {
   });
 }
 
+/* ── MOBILE NAV ───────────────────────────────────────────── */
+function initMobileNav() {
+  const nav    = document.querySelector('nav');
+  const toggle = document.querySelector('.nav-toggle');
+  if (!nav || !toggle) return;
+
+  toggle.addEventListener('click', () => {
+    nav.classList.toggle('is-open');
+  });
+
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => nav.classList.remove('is-open'));
+  });
+}
+
 /* ── INIT ─────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   animateCostBars();
@@ -302,4 +317,5 @@ document.addEventListener('DOMContentLoaded', () => {
   drawNozzleContour();
   setActiveNav();
   initLightbox();
+  initMobileNav();
 });

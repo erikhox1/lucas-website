@@ -743,6 +743,36 @@ footer {
   font-weight: 300;
 }
 
+/* ── HAMBURGER BUTTON ─────────────────────────────────────── */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: var(--radius);
+  flex-shrink: 0;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background: var(--dark);
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  transform-origin: center;
+}
+
+nav.is-open .nav-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+nav.is-open .nav-toggle span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+nav.is-open .nav-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
 /* ── RESPONSIVE ───────────────────────────────────────────── */
 @media (max-width: 860px) {
   .two-col,
@@ -766,5 +796,34 @@ footer {
   .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
   .ref-item { grid-template-columns: 30px 1fr; }
   .ref-link { grid-column: 2; }
-  .nav-links { display: none; }
+
+  .nav-toggle { display: flex; }
+
+  .nav-links {
+    flex-direction: column;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--stone);
+    padding: 0.75rem 1.25rem 1.25rem;
+    z-index: 99;
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.22s ease, opacity 0.18s ease;
+  }
+
+  nav.is-open .nav-links {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .nav-links a {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.95rem;
+  }
 }
